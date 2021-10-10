@@ -42,7 +42,7 @@ app.post('/send', (req, res) => {
     res.status(401).send({ err:'Signature is incorrect.' });
   } else {
     if(amount <= 0 || isNaN(amount)){
-      res.status(402).send({ err:'Invalid amount: You can only transfer values greater than 0.' });
+      res.status(400).send({ err:'Invalid amount: You can only transfer values greater than 0.' });
     } else if(balances[sender] < amount){
       const balance = balances[sender] || 0;
       res.status(402).send({ err:`Insufficient funds: Your account balance is ${balance}. You requested to transfer ${amount}.` });
